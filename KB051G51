@@ -1,6 +1,0 @@
-Tip 051: Complete history of a file
-
-git log --follow -p path/to/file
-
-This will show you the complete history of a file, modifications, deleted, added,
-even if it has been renamed at some point in the history of the repo.

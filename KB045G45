@@ -1,8 +1,0 @@
-Tip 045: git submodule foreach
-
-Got a repo with submodules?  Use git submodule foreach to perform the
-same action on every submodule. This is a great way to see the status
-of every submodule at once, or clean out untracked files...
-
-git submodule foreach 'git status'
-git submodule foreach 'git clean -xdf'
