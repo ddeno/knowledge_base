@@ -1,0 +1,23 @@
+Tip 033: Add a new remote
+
+You may not be aware that origin/branch is just one of many possible
+remotes your repo could have.  This is particularly useful if you are
+an integrator for your team.  In other words, if you are the one pulling
+peer-to-peer often from the same developers, you may want to set their
+repo up as another remote.  Try it!
+
+    git remote add <yourNameForRemote> <URL>
+ex: git remote add bob /users/bob/dev/repo
+
+Now, you can do 'git fetch bob' and bob's changes will be fetched in to your 
+repo (REMEMBER: FETCHED not PULLED).  You can even look at exactly what bob has
+in his last commit, by checking out to it, like so
+
+   git checkout bob/branch
+
+Just like origin, you can merge directly with bob's remote:
+
+   git checkout dev
+   git merge bob/dev
+
+Enjoy!

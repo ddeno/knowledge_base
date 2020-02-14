@@ -1,0 +1,4 @@
+Tip 013: Show files that got modified in each commit
+
+git log --stat
+

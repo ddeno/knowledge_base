@@ -1,0 +1,19 @@
+Tip 042: Git stash untracked files
+
+With git 1.7.7+, you can stash all files including files that aren't tracked.
+That is nice because a lot of times you have added files and junk and you just
+want to totally stash your directory and not drag the created clutter with you.
+Here's the command:
+
+% git stash -u
+
+Also, "git reset --hard HEAD" doesn't clean up files that aren't tracked.  If
+you have untracked files, they hang around.  To get rid of those you can "git
+clean".  Here is my alias:
+
+% alias gnuke 'git reset --hard HEAD; git clean -df'
+
+That, actually, isn't all the way nuked, you could add the -x option to 
+also clean gitignored files... but that was too nuclear for me... as I need
+some of my ignored files... however, say if you had your  *.o  etc. files
+ignored... the -x option would clean up those too.

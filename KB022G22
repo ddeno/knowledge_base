@@ -1,0 +1,12 @@
+Tip 022: Show commits for a particular developer
+
+Need to see all the commits made from one person? Do this...
+
+git log --author="Author Name"
+
+If you are not sure the exact spelling of the author, you can
+always grep through the log, like so...
+
+git log |grep "John Smith"
+git log |grep -i "Jonathan Smith"
+

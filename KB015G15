@@ -1,0 +1,11 @@
+Tip 015: unadd alias
+
+Add the following to the [alias] section of your ~/.gitconfig
+to easly remove files from a commit:
+
+unadd = reset HEAD
+
+
+You can also add it by doing the following from a shell:
+git config --global alias.unadd "reset HEAD"
+

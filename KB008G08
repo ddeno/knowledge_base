@@ -1,0 +1,25 @@
+Lesson 008: Git pull and git push
+
+If you've used git and collaborated with at least one more person in development you
+have proabaly already used git pull.  It's how you pull changes from another repo
+and merge them into your own.
+
+Git pull is actually a git fetch followed by a git merge
+
+   git fetch    # Retrieves objects from the other repository
+   git merge    # Merges repository with your own
+
+If you are lucky, you won't have any merge conficts and you will automatically be 
+merged in with the repo you pulled from.  More on merge conflicts later.
+
+Git push is the opposite of git pull.  It let's you push your changes to another
+repository.  You should always push to a bare repo, or you could permanently screw up
+the remote repo.  Don't worry, if you try it won't let you screw it up, unless you 
+use the force flag.
+
+   git push /path/to/bare/remote    # Pushes changes to another bare repository
+
+Git push is often implemented with centralized approaches toward using git, but it's
+also handy for moving your repos around for working in multiple locations.  If you have
+a "one way" ssh tunnel because of firewalls or something, you can use git push to
+continue development anywhere you can ssh to or from.

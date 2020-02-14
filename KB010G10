@@ -1,0 +1,46 @@
+Lesson 010: Git, Merge Conflicts, and git mergetool
+
+Git is pretty good about auto-merging when you do a pull but sometimes
+two people modify the same line in the same file and git reports that
+there is a merge conflict.  You'll see it right after the pull, and your
+git status will show "Unmerged paths"
+
+It's important to note that any file you see under unmerged paths WILL 
+NOT BE YOUR ORIGINAL FILE. It will most likely have some areas that were
+auto merged but it will definitely contain regions that look like diff
+output.  You know the stuff I mean...
+
+   blah blah
+ <<<<<<<<<<<<<<<<<<<<
+   blah blah diff blah
+ >>>>>>>>>>>>>>>>>>>>> 
+   blah blah
+
+You can go in and "resolve the differences" manually, then git add the file
+followed by a git commit.  Bam that's a sucessful merge.
+
+Sometimes it's nice to have context when you are merging a file, and that's
+where git mergetool shines.  Put this in your ~/.gitconfig
+
+[merge]
+    tool = gvimdiff    # your favorite diff tool goes here
+
+Next time you have merge conflicts, just type "git mergetool" and you'll get
+some fancy diff windows showing multiple files, which may include:
+   LOCAL  - Your version of the file before the merge
+   REMOTE - The version you were trying to merge with
+   BASE   - This is a 'common ancestor' of both files, to give context
+   MERGED - This is the file you want to commit, resolve the conflict here
+Usually the window in the center is the one you edit (MERGED), and when you save 
+the file the merge conflict will be resolved. Quit without saving to abort the merge.
+
+Sometimes you know what a merge conflict is, and you don't care about a merge you 
+just want to pick your file or their file.  That's easy!
+
+   git checkout --theirs filename   # This checks out the remote's version of filename
+   git checkout --ours   filename   # This checks out your local (pre-merge) version 
+
+REMEMBER: When you are working through merge conflicts, check git status often.  You
+will have to git add/commit manually because every merge has a unique commit hash.  This
+isn't initially obvious, because when you merge without conflicts, this process happens
+automatically.

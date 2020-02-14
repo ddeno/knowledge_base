@@ -1,0 +1,17 @@
+Tip 020: Blow away all uncommitted work.
+
+This will delete all uncommitted work, meaning everything in the
+"Changed but not updated" section will go back to their state at
+the last commit (HEAD).
+
+   git reset --hard HEAD
+
+This is particularly useful when you've done some work and for one
+reason or another you have decided to scrap everything you've done
+and start over from the last commit.
+
+It's also useful if you get halfway through a merge and realize for 
+one reason or another that you want to abort the merge.
+
+This will NOT delete untracked files.  If you want to do that, you
+want to 'git clean -df'

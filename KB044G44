@@ -1,0 +1,21 @@
+Tip 044: Think you lost a commit? Git reflog (pronouced REFF LOG, not RE-flog)
+
+Check out the description in the man page for git-reflog:
+
+    git-reflog – Manage reflog information
+
+Well, that's useful.  Here's one that I wrote, that says essentially the same thing:
+
+    git-reflog – Get info for stuff about things
+
+It turns out, there's a better definition later in the man page, it looks like this...
+
+    Reflog is a mechanism to record when the tip of branches are updated. This
+    command is to manage the information recorded in it.
+
+Simply put, the reflog is how git tracks what actions you perform in your repo over
+a period of time.  By default, it keeps this information for 30 days.  If you think
+you may have lost a commit somewhere, you probably haven't.  It's in your git reflog!
+At least, it will be for 30 days.  If you find a lost commit in the git reflog, you
+can checkout to it, cherry-pick, merge or whatever you want.  After 30 days, it may
+automatically be cleaned up by git.

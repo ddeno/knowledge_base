@@ -1,0 +1,20 @@
+Lesson 007: .git/ and Bare Repositories
+
+How git works is practically indistinguishable from magic, but we do know a few
+things.
+
+Everything in your repo from it's inception to right now is stored in the top 
+level under a folder .git/ .  When you checkout, commit, rebase, etc. git is retrieving
+and or modifying the history of your project, all stored under this folder.
+
+Remember, the files you see normally (the files you work with every day) are called
+files in the working tree.  They can be deleted/manipulated but always be recovered, 
+that's because they are being recovered from the .git/ folder.
+
+You may be familiar with bare git repositories, usually they are cloned that way...
+   git clone --bare /path/to/repo
+
+If you look inside a bare repository, you'll notice theres no working tree, just
+the .git/ files.  Bare repositories are usually used as centralized "mothership" repos
+or "conveinence pushers" because bare repos can always be pushed to.  More about 'git push'
+later...

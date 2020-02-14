@@ -1,0 +1,4 @@
+Tip 018: git clean
+
+Got unwanted untracked files cluttering up your git status message?
+Run 'git clean -df' . Just make sure you really don't want those files.

@@ -1,0 +1,127 @@
+Tip 026: Revisiting the Index
+
+Remember the git index?  It's probably that thing in git that you know about but
+don't fully utilize because you aren't quite sure how it works.  You're not alone.
+Here I'm going to give examples of git commands that manipulate the index to show
+you exactly what happens.  
+
+Here's a hypothetical repo, and we are going to manipulate just one file.  Let's 
+say 'git status' shows this:
+
+    # On branch dev
+    nothing to commit (working directory clean)
+
+And in this directory there's a file README that has a single line, that looks like:
+
+   README:
+      Hello!
+   
+Now you open the file and modify it so it says "Hello you!"
+
+   README:
+      Hello you!
+
+'git status' shows this:
+
+    # On branch dev
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   README
+
+'git add README' followed by 'git status' shows this:
+
+    # On branch dev
+    # Changes to be committed:    <--------------------- Notice the difference
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README
+    #
+
+If you are using git colors, README now shows up green, indicating that the
+change you made (from Hello! to Hello you!) is now STAGED IN THE INDEX.  Let's change
+the file again, to say "Hello you jerk!"
+
+   README:
+      Hello you jerk!
+
+Now look at 'git status'......
+
+    # On branch dev
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README
+    #
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   README
+
+Git has found that you have made changes to README since you last added it to the index.
+It's important to note right now that nothing has been committed yet.  In this example
+we are doing some hypothetical development, finding changes we like, and staging them.
+This is where people usually get confused.  What happens now if I 'git checkout README'?
+Can you guess?  Let's find out.  'git checkout README'
+
+   README:
+      Hello you!
+
+'git status' shows this:
+
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README
+
+Notice that 'git checkout' discards the changes NOT STAGED IN THE INDEX.  "Hello you 
+jerk!" becomes "Hello you!", not the original "Hello!".  Think about this mechanism 
+for a second.  Git has let you easily revert back to an uncommitted state by letting 
+you keep that state in the index.  The index is a staging area, and when used effectively
+will help you develop faster and easier.
+
+Let's try something else, go into README and change "Hello you!" to "Hello glue!"
+'git status' shows:
+
+    # On branch dev
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README
+    #
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   README
+
+Now do 'git reset HEAD README'.  'git status' shows
+
+    # On branch dev
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   README
+    #
+    
+README still says "Hello glue!".  What happened?  'git reset HEAD README' told git to
+unstage the changes that were currently present in the index.  It did not affect the
+'Changed but not updated' area.  This is something you would use when you realize
+what you staged is not ready, and/or you want to revert back to the original.  Once
+the changes are unstaged, a simple 'git checkout README' will take you to your last
+commit's version of README.
+
+Most developers do development, then git add, then immediately git commit their work.
+If you can break from this habit and git add more frequently and git commit less 
+frequently, your commits can be more succint and you will become a more effective
+git user.  I suggest having a BS repo around, to try out commands when you aren't
+sure what will happen.  Go ahead and give all this a shot, it sinks in better that way.
+
+For more information about the inner workings of the index, see
+    http://www.gitguys.com/topics/whats-the-deal-with-the-git-index/
+    
+
+

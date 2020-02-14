@@ -1,0 +1,25 @@
+Tip 049: Shallow clones via 'git clone --depth'
+
+There may be an occasion when you want to clone a repo but you don't give a monkey-
+fighting crap about the history of the repo beyond some point.  I mean seriously,
+are you going to go git checkout to 8 years ago? Nope. 
+
+   git clone --depth <revisions back> --no-hardlinks /path/to/repo.git
+
+This will clone the git repository but ingore bringing you the history before the
+specified depth.  As an example if --depth 10 is specified, you will get the last 10
+commits only.  This can result in a much smaller repo size, but comes with some 
+limitations.  Here's what the man page says...
+
+       --depth <depth>
+           Create a shallow clone with a history truncated to the specified
+           number of revisions. A shallow repository has a number of limitations (YOU
+           CANNOT CLONE OR FETCH FROM IT, NOR PUSH FROM NOR INTO IT), but is adequate if
+           you are only interested in the recent history of a large project with a long
+           history, and would want to send in fixes as patches.
+
+Note this won't affect submdoules recursively, you'll have to specify --depth for each
+submodule as needed.  Also, if you fetch from a remote, you'll get the entire history
+apparently.  Under what circumstance would this be useful????
+
+...oh.. were you expecting me to answer that?

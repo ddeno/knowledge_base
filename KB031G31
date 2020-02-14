@@ -1,0 +1,16 @@
+Tip 031: git grep for tab characters
+
+You may be familiar with grepping for tab characters, like so:
+
+   grep -P '\t'
+
+But since git grep doesn't support the -P switch, how do you do it
+using git?
+
+Insert a literal tab into the command by typing Ctrl+v right before
+you hit tab, like so
+
+git grep <CTRL+v>'<TAB>'
+
+Sweet.  Now you can get rid of all those tabs.  Seriously, get rid of 
+them.

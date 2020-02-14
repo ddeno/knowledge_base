@@ -1,0 +1,9 @@
+Tip 027: git archive
+
+Sometimes you might want to package up your source code in a way that doesn't preserve
+all the history of the repo -- like cutting a release of a software project.  You can
+do that easily with git archive.  Here's an example that creates a tar.gz of the contents
+of the repo at the state HEAD.
+
+git archive --format=tar --prefix=release_120531 HEAD |gzip > release_120531.tar.gz
+

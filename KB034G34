@@ -1,0 +1,9 @@
+Tip 034: gitk functionality without the gui
+
+Make an alias that does this:
+
+git log --graph --decorate --pretty=oneline --abbrev-commit
+
+I use gt which stands for git tree in my brain.  Call it whatever
+you want.  It's most of the awesome from gitk without needing the
+gui.  Remote workers rejoice!

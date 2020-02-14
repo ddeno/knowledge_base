@@ -1,0 +1,32 @@
+Tip 029: Quick undo a commit and redo
+
+Sometimes you've done some work, you git commit, write your nice message and right as you
+hit enter you realize you screwed up something minor in your commit.  For example, maybe
+you committed some new files you didn't intend, or you made a quick print modification
+in a file for testing and committed it accidentally.
+
+It's easy to redo your last commit, just use 'git reset --soft HEAD^'  It's cool, it will
+put your repo back at the state of the speficied commit but also put it in the state it 
+was RIGHT BEFORE the next commit was to be made.  In other words, your working tree
+will NOT be clean, like with 'git reset --hard', it will instead contain all the files
+staged for commit.  
+
+Here's the steps, with descriptions taken from the git-reset man page...
+
+    $ git commit ...  OOPS I screwed up!
+    $ git reset --soft HEAD^      (1)
+    $ edit                        (2)
+    $ git commit -a -c ORIG_HEAD  (3)
+
+1. This is most often done when you remembered what you just committed is incomplete, or
+you misspelled your commit message, or both. Leaves working tree as it was before
+"reset".
+2. Make corrections to working tree files.
+3. "reset" copies the old head to .git/ORIG_HEAD; redo the commit by starting with its
+log message. If you do not need to edit the message further, you can give -C option
+instead.
+
+For those of you with interest in what's going on behind the scenes, 'HEAD^' means the 
+first parent of 'HEAD'. In this example, the "bad" commit would be considered HEAD at the 
+time of the reset, so that's why we reset to the parent of HEAD (one commit behind).
+

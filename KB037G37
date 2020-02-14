@@ -1,0 +1,30 @@
+Tip 037: The difference between ~ (tilde) and ^ (caret)
+
+HEAD~ is shorthand for HEAD~1 and means the head's commit's first parent. HEAD~2 means
+the commit's first parent's first parent. HEAD~3 means the commit's first
+parent's first parent's first parent. And so on.
+
+HEAD^ is shorthand for HEAD^1 and means the commit's first parent. But where
+the two differ is that HEAD^2 means the commit's second parent (remember,
+commits can have two parents when they are a merge).
+
+The ^ and ~ operators can be combined.  Using 'git show' will illustrate the reference
+without affecting the repo -- try these.  These are all valid references to a
+state of the repository...
+
+    git show HEAD^~
+    git show HEAD~^
+    git show HEAD~5
+    git show HEAD^^^~~
+    git show <branch>^~^^^~~^^~^~^~^~^~^~^~^~^~^~^
+
+Try this one
+    git show HEAD^2
+
+If HEAD only has one parent, you will see this error:
+fatal: ambiguous argument 'HEAD^2': unknown revision or path not in the working tree.
+
+So to summarize, use ~ to refernce first parental relationships, and ^ to reference 
+second parent relationships.
+
+Use :( to reference mother-in-law relationships.

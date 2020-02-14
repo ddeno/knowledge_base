@@ -1,0 +1,28 @@
+Tip 048: Git bisect saves time
+
+There may come a time when you observe some kind of behavior in your git project 
+that is unexpected, and need to find out when the behavior first occured.  This
+is when 'git bisect' is your friend.
+
+First, get to a clean state, make sure you don't have any non-committed work. The
+quickest way is to 'git stash' whatever you are doing.  Then ...
+
+   git bisect start
+
+You can mark bad commits with:
+
+   git bisect bad <bad commit hash>
+
+You can mark good commits with:
+
+   git bisect good <good commit hash>
+
+Once you have one good and bad commit, git will automatically bisect the tree, checking
+out to a particular hash to perform a binary search.  Simply test for your criteria
+and mark good/bad at each step.  When you are done, git will have pinpointed the
+exact commit that caused the behavior.
+
+Do 'git bisect help' for help at any time during the process.
+
+When you're done, do 'git bisect visualize' and you'll get gitk showing exactly
+what changed in that commit.  Woot!

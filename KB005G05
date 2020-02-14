@@ -1,0 +1,67 @@
+Lesson 005: More about 'git status'
+
+'git status' will probably be your most used git command.  It is intended
+to show you the current state of your repository at the time you type
+the command.  When you "git status" you'll probably see something like this:
+
+    # On branch master                                           (A)
+    # Your branch is ahead of 'origin/master' by 1 commit.       (B) 
+    #
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)              (C)
+    #
+    #   new file:   my_new_file.c                                (D)
+    #   modified:   my_mod_file.c  
+    #
+    # Changed but not updated:                                                     (E)
+    #   (use "git add <file>..." to update what will be committed)                 (F)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)  (G)
+    #
+    #   modified:   test/still_working_on_this_file.pl                             (H)
+    #   modified:   my_mod_file.c                                                  (I)
+    #
+    # Untracked files:
+    #   (use "git add <file>..." to include in what will be committed)             (J)
+    #
+    #   file_i_care_not_to_track.c                                                 (K)
+
+Below is a summary of what you are looking at (A)-(K) above....
+
+(A) This tells you what your current branch is
+(B) This line is informing you that your branch has an additional commit that
+    your origin/master branch does not have.  This is normal, everytime you commit
+    your current branch is "ahead of origin", until the point at which origin
+    pulls from you (or you push to origin).  More on that later...
+(C) This is git telling you how to unstage files in the index.  This action WILL NOT
+    modify the file itself, you are just telling git you do not wish to stage that
+    file for a commit.
+(D) Here's a list of files in your index.  They got there by 'git add' or 'git rm'.
+(E) Everything listed in this section are files that git has determined are different
+    than what the last commit has, but they are not yet staged for commit.  
+    This is git saying "hey I found these changes, but you aren't telling me to commit 
+    them yet"
+(F) This tells you how to add the modifications listed in (E) to the index
+(G) This tells you how to discard the mods listed in (E) and go back to what the previous
+    commit had for a particular file. CAREFUL THIS WILL PERMANENTLY DESTROY ANY MODS YOU
+    HAVE MADE SINCE YOUR LAST COMMIT.
+(H) An example of a modified file not yet staged in the index.
+(I) Note that this file IS ALSO IN THE INDEX.  This can be confusing at first so listen up.
+    If a file is listed in the index AND in 'Changed but not updated' that means that
+    you have added this file to the index recently, but you have changed it again since
+    then. Remember, if you make a change to a file and you want that change to be committed
+    you MUST 'git add' the file to the index.  Git is tracking changes you make and when
+    you make them, so it knows your most recent changes (I) were never staged in the index
+    like your oldest changes (D).  Just 'git add' it again to stage all changes for that file.
+(J) This tells you how to add a totally new file (one git knows nothing about up to this 
+    point) to the repository.
+(K) Files listed here are files that have never been tracked, which means they have never
+    been 'git add'ed.  When you create a new file that you want to track, make sure you
+    git add it so git knows that you want to track it.
+
+
+
+
+
+
+
+

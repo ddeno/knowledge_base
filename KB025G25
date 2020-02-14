@@ -1,0 +1,39 @@
+Tip 025: More about fetch, merge, and pull
+
+We have already talked about git pull, git fetch, and git merge a little bit.
+Here I want to talk about them in more detail.
+
+It may not be immediately apparent, but your git repo has information about
+your remotes.  A common remote is the place you pulled from (origin) but you 
+can set up multiple remotes.
+
+When you do a 'get fetch', git is downloading all the information about development
+that has occured in your remotes and bringing them locally into your repo.  None 
+of your development branches are affected by this process.  Try doing 'git branch -a'.
+Your remotes/branches will be listed at the bottom.  
+
+Git merge can act on any of your local branches or any of your remotes.  Let's say
+'git branch -a' looks like this:
+
+  master
+  dev
+* int
+  next
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/int
+  remotes/origin/master
+  remotes/origin/next
+
+You are on the int branch right now.  Let's say you are ready to merge with origin/int.
+You would do 'git merge origin/int'.  This command will merge your branch with 
+origin/int, but don't get confused -- this doesn't necessarily mean you are up to date
+with origin/int.  It just means you are merging with origin/int's state since the last
+time you 'git fetch'ed. 
+
+'git fetch' & 'git merge' aren't difficult concepts, but I feel like they become confusing
+because developers are usually first introduced to 'git pull'.  Git pull does a lot behind
+the scenes, but really it's just a 'git fetch' followed by a 'git merge'.  You can 'git
+pull' locally between branches, which is kind of weird if you think about it.  Why would
+you git pull (fetch first, then merge) for a branch that's already in your repo?
+
+If you are used to git pull, try git fetch + git merge.  I think you'll like it.

@@ -1,0 +1,22 @@
+Tip 038: Git with it, subvert Subversion!
+
+Git is a complex & powerful tool.  It's a tool that demands it's users to have
+a basic level of understanding to operate.  Some people say that's a reason to hate
+git, but I disagree.  Would you rather chop down a tree with an axe, or learn how
+to use a chainsaw?  If you like pain, You could try to chop the tree down with a 
+Gillette Fusion shaving apparatus. Razor anyone?
+
+Here's a few reasons why git is superior to subversion:
+
+1. Branching is easy in subversion, but merging is a pain. Subversion has no
+   history-aware merge capability forcing its users to manually track exactly which 
+   revisions have been merged between branches making it error-prone
+2. Subversion has no way to push changes to another user without submitting to the 
+   central server.  Git excels at peer-to-peer collaboration.
+3. Subversion fails to merge changes when files or directories are renamed
+4. (.svn) files pollute your local directories
+5. Offline commits are not possible with Subversion.
+6. Git's distributed architecture creates a natural security against data loss
+7. Subversion got in a fight with Git after school, it tried to take it's lunch
+   money.  But git was all like, no way bro.  Then they played kickball.
+

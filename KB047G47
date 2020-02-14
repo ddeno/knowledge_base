@@ -1,0 +1,23 @@
+Tip 047: Undo git fetch
+
+This is kind of a weird functionality someone might need, but be clear that this
+is not the same as undoing a git-merge or undoing a git-pull.
+
+Let's take an example workflow...
+
+    git show origin/master # shows commit abc123
+    
+    git fetch              # yay i got something!
+    
+    git show origin/master # shows commit def456
+
+    mystery command goes here so that...
+    
+    git show origin/master # shows commit abc123
+
+
+Here's how you do it 
+    git update-ref refs/remotes/origin/master refs/remotes/origin/master@{1}
+
+This info came from stackoverflow, see more here 
+     http://stackoverflow.com/questions/15254480/reverse-a-git-fetch

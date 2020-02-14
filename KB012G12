@@ -1,0 +1,12 @@
+Tip 012: Git colors are fun
+
+Put this in your ~/.gitconfig to get some wicked hardcore colors
+
+[color]
+        ui = true
+
+Now everytime you do a git status, git log, blah blah you'll see helpful
+colors.  In git status, green entries represent stuff ready to commit
+red entries are outstanding things the developer should look at, like
+untracked files, changed but not updated, etc.
+

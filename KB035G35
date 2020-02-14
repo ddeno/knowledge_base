@@ -1,0 +1,27 @@
+Tip 035: View deleted files (or modified in any way)
+
+Here's a common scenario.  You pull from someone and find that a file you 
+expected to exist no longer exists.  Someone deleted it!  How do you find
+out what happened to that file?  Normally, you'd 'git blame file' to see
+who modified it, but if it's gone, 'git blame' will fail like so:
+
+fatal: cannot stat path : No such file or directory
+
+What you want to do, is find it in the git log.  Luckily, 'git log' has the
+following switch:
+
+      --diff-filter=[ACDMRTUXB*]
+           Select only files that are Added (A), Copied (C), Deleted (D),
+           Modified (M), Renamed (R), have their type (i.e. regular file, symlink,
+           submodule, ...) changed (T), are Unmerged (U), are Unknown (X), or have had
+           their pairing Broken (B). Any combination of the filter characters may be used.
+           When * (All-or-none) is added to the combination, all paths are selected if
+           there is any file that matches other criteria in the comparison; if there is no
+           file that matches other criteria, nothing is selected.
+
+
+So in our example, lets show only deleted files...
+
+    git log --diff-filter=D --summary
+
+Jackpot.

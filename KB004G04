@@ -1,0 +1,34 @@
+Lesson 004: More about Commits
+
+A commit is basically a saved state.  Underneath it is represented as a set of
+file diffs from one saved state to another, but from the git user's perspective
+it is the manner in which code is evolved and reverted if necessary.
+
+To 'see' a commit, do "git log"....
+
+    commit 99def6d8288f910486351ecddd861bf4b9b97719
+    Author: Some Dude <some.dude@dudeland.com>
+    Date:   Tue Dec 6 13:12:26 2011 -0600
+    
+        Added Doxygen Doxyfile.
+    
+You will see a list of commits, most recent at the top, oldest at the bottom.
+
+That long-ass hash is the SHA-1 revision, but I call it the commit hash.
+To revert your working directory to show the state of all files for a particular
+git hash, just type
+
+   git checkout <commit hash>
+
+To go back to what you had before...
+
+   git checkout master (or whatever you named your working branch)
+
+Everytime you commit, a unique git hash is created, forever giving you a way to
+return to that state.
+
+REMEMBER, COMMITTING CODE ONLY AFFECTS YOUR REPOSITORY. COMMITTING CODE IS EASY,
+CHEAP, AND HELPFUL.  IF YOU ARE NEW TO GIT, COMMIT OFTEN. 
+
+Once you are more comfortable using git, you may wish to commit less by effectively 
+using the index, but we'll leave for another time.

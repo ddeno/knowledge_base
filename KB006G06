@@ -1,0 +1,49 @@
+Lesson 006: More about branches
+
+Branching is one of the most powerful features of git.  To see what branch you 
+currently on, just type 'git branch'.
+
+A branch is an independent line of development.  Typically a git repo has a master
+branch and maybe some other development branches.  When you do 'git branch' you may
+see something this...
+
+[user@host] $ git branch
+
+  * (no branch)
+    dev
+    master
+    next
+    refactorAttempt
+
+The * shows you what your current branch is.  Notice the (no branch) case above.  If
+you ever revert back to an old commit to inspect something via 'git checkout <git hash>'
+you will be put on (no branch). This means you aren't really on a development branch.
+Even though you can see files at that state and sort of commit, things get weird.  
+Just make sure you are on a branch before you commit and you wont have any issues.
+
+Branching is very useful when you want to attempt a completely separate line of 
+development and you are not sure if it'll work or even if it's a good idea. In other words
+it's great for prototyping.  See the refactorAttempt branch above?  This was probably
+created when a developer had an idea for refactoring a design but wasn't sure if it's
+what he/she wanted.  After the line of development is complete, the developer can choose
+to fold it into their development branch (dev) by switching to it ...
+
+    git checkout dev
+
+...and then merging with the local branch refactorAttempt...
+
+    git merge refactorAttempt
+
+If you didn't like the outcome, you could just delete the branch all together, like this
+
+    git branch -D refactorAttempt
+
+Branches are also useful on large scale projects.  Often it's handy to keep your work
+in a separate branch (dev) from a common merge branch (next).  This way, if other developers
+accidentaly (or purposefully) break source code in the common branch (next) you will have 
+already isolated the issue in it's own branch, allowing you to continue to develop in your 
+(dev) area without cumbersome git resets.
+
+Branching is easy and useful. It is completely local meaning it can't affect remotes.
+Don't be afraid to make a new branch for a new line of development by doing 
+'git branch <branchname>'.  

@@ -1,0 +1,37 @@
+Tip 032: Pull a stash between repos. (ADVANCED) 
+
+Strictly speaking, git gives you no "correct" method for pulling
+stashes between repos, but you can do it with some trickery.
+
+Why would you want to do this?  Well one good reason I can think of
+is if you are right in the middle of development, everything is broken
+and you need to physically leave your workstation.  You would like to
+resume work from another location exactly where you left off, but 
+for one reason or another, you must run locally from that new location.
+
+Basically, you create a "garbage commit" that then gets removed from 
+the source and destination repos later.
+
+ 1.  Make a commit, with a commit message like "[non-commit] FOR TRANSFER 
+     ONLY", featuring the content you want transfered.
+
+ 2.  Login to the other computer.
+      git pull <username>@<host>/path/to/project/ branch
+
+ 3.  git reset HEAD^ (implies --mixed) in destination repo
+
+     This resets the HEAD to point to the state before the "[non-commit]" commit.
+     Those changes you made will show up at not staged for commit, ready to be
+     worked on and that "garbage commmit" is gone for good.
+
+  4.  In your source repo (the one you moved files FROM), you will want to:
+
+         git reset --hard HEAD^ 
+
+      to remove "[non-commit]", since that commit is garbage.
+
+This is sort of a tricky way to get the behavior you want without creating
+"useless" commits.  One could argue that commits for transferring persisting
+in the repo is OK, and if you are more comfortable with that, it's a good 
+method as well.
+

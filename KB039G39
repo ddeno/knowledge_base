@@ -1,0 +1,22 @@
+Tip 039: Having issues collaborating? Check your umask
+
+If you have trouble collaborating with other users's repos, there may be a
+permission problem.  The problem shows up when a commit is made by a user with
+a "bad" umask, and objects are written to .git/ that have no group/other read
+permissions.  The original developer may not be aware of the problem until someone
+else attempts to pull or run "git log" in their area.
+
+I've seen everything from "corrupted object" to "not a git repo" when this happens. 
+Set your umask to 022 in your bashrc (or cshrc) to make sure is correct no matter what 
+machine you are working on.
+
+If you have a git repo that's all messed up because of a bad umask, I'm sorry, you 
+will have to re-clone and start over.  LAWL! just kidding.  Just do this in your ./git
+directory...
+
+   chmod -R go+r *
+
+... and you should be good to go.
+
+
+
