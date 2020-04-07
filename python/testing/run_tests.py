@@ -12,7 +12,7 @@ def run_tests(args):
 
     loader = unittest.TestLoader()
 
-    suites = loader.discover(start_dir=os.path.join(my_dir), pattern='test.py', top_level_dir=my_dir)
+    suites = loader.discover(start_dir=os.path.join(my_dir, 'tests'), pattern='test.py', top_level_dir=my_dir)
     overall_suite = unittest.TestSuite()
     for test_suite in suites:
         if test_suite._tests:
