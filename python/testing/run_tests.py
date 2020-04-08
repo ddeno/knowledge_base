@@ -22,11 +22,8 @@ def run_tests(args):
     logger.handlers = []
     logger.disabled = True
     my_test_stream = StringIO()
-    # runner = unittest.TextTestRunner(stream=my_test_stream, verbosity=args.verbosity, resultclass=TestResult, buffer=True)
-    # runner = unittest.TextTestRunner(stream=my_test_stream, verbosity=args.verbosity, buffer=True)
     runner = unittest.TextTestRunner(verbosity=args.verbosity, buffer=True)
     results = runner.run(overall_suite)
-    # results.report()
 
 
 # Main execution block
